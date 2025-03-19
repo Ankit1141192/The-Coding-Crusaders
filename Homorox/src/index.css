@@ -1,0 +1,170 @@
+/* ==================== Global Styles ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+/* ==================== Common Styles for Login & Register ==================== */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.auth-box {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  text-align: center;
+}
+
+/* ==================== Input Fields ==================== */
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* ==================== Buttons ==================== */
+.auth-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.auth-button.primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.auth-button.primary:hover {
+  background-color: #0056b3;
+}
+
+.auth-button.google {
+  background-color: #db4437;
+  color: white;
+}
+
+.auth-button.google:hover {
+  background-color: #b23224;
+}
+
+.auth-button.otp {
+  background-color: #28a745;
+  color: white;
+}
+
+.auth-button.otp:hover {
+  background-color: #218838;
+}
+
+.auth-button.verify {
+  background-color: #dc3545;
+  color: white;
+}
+
+.auth-button.verify:hover {
+  background-color: #c82333;
+}
+
+/* ==================== Messages ==================== */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.separator {
+  margin: 15px 0;
+  font-size: 14px;
+  color: #888;
+}
+
+/* ==================== Links ==================== */
+.auth-text {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.auth-text a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.auth-text a:hover {
+  text-decoration: underline;
+}
+
+/* ==================== Responsive Styles ==================== */
+@media (max-width: 400px) {
+  .auth-box {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .auth-button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .input-group input {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
+/* Google Button */
+.auth-button.google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Spacing between logo and text */
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  transition: background 0.3s;
+}
+
+.auth-button.google:hover {
+  background-color: #f8f9fa;
+}
+
+/* Google Icon */
+.google-icon {
+  font-size: 20px; /* Adjust size */
+}
