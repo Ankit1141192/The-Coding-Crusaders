@@ -18,6 +18,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app); // ✅ Firestore Setup
-const googleProvider = new GoogleAuthProvider(); // ✅ Google Auth Setup
+const googleProvider = new GoogleAuthProvider(); 
 
 export { auth, app, db, googleProvider, RecaptchaVerifier };

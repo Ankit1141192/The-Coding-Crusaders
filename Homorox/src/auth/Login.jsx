@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { auth } from "../firebase/firebase";
+import logo from "../assets/logo.png";
+import {Image} from "@chakra-ui/react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc"; // Import Google icon from react-icons
 
@@ -21,7 +23,7 @@ export default function Login() {
   return (
     <div className="auth-container">
       <div className="auth-box">
-        <h2>Login</h2>
+        <h2> <Image src={logo} alt="logo" boxSize="60px" w = "30%" /> Login</h2>
 
         {error && <p className="error-message">{error}</p>}
 

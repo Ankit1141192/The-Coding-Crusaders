@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
-      if (user && navigate) navigate("/profile"); // ✅ Redirect only if navigate is available
+      if (user && navigate) navigate("/home");
     });
 
     return () => unsubscribe();

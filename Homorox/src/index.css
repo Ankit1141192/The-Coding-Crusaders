@@ -168,3 +168,14 @@
 .google-icon {
   font-size: 20px; /* Adjust size */
 }
+#navbar{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: gradient;
+}
+#register,#login{
+  text-decoration: none;
+}
+#box1>img{
+  margin-left: 80px;
+}
+

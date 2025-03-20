@@ -2,6 +2,8 @@ import { useState } from "react";
 import { auth, googleProvider } from "../firebase/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
+import logo from "../assets/logo.png";
+import {Image} from "@chakra-ui/react";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -14,10 +16,9 @@ export default function Register() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // ✅ If no name is provided, use the part before "@" in the email
       const finalName = name || email.split("@")[0];
 
-      // ✅ Set the user's display name
+
       await updateProfile(user, { displayName: finalName });
 
       alert("Registered successfully!");
@@ -30,8 +31,7 @@ export default function Register() {
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
       const user = userCredential.user;
-
-      // ✅ If Google name is missing, use the email prefix
+      
       if (!user.displayName) {
         await updateProfile(user, { displayName: user.email.split("@")[0] });
       }
@@ -45,7 +45,8 @@ export default function Register() {
   return (
     <div className="auth-container">
       <div className="auth-box">
-        <h2>Register</h2>
+        <h2> <Image src={logo} alt="logo" boxSize="60px" w = "30%" /> Register</h2>
+       
 
         {error && <p className="error-message">{error}</p>}
 
