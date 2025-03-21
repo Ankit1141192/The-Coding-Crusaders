@@ -2,16 +2,16 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Navbar from "./components/Navbar";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import Profile from "./pages/Profile";
 import { AuthProvider } from "./context/AuthContext";
 import Main1 from "./components/Main1";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 
 
+
 function Layout() {
   const location = useLocation();
-  const isAuthPage = location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/home";
+  const isAuthPage = location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/home" || location.pathname === "/home/tenant";
 
   return (
     <>
@@ -22,7 +22,7 @@ function Layout() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home/>} />
-          <Route path="/home/profile" element={<Profile />} />
+         
         </Routes>
       </AuthProvider>
       {!isAuthPage && <Footer />}
