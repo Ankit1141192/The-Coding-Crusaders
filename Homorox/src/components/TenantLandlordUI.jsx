@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Box, Center, Flex, Text, Card, CardBody, Stack, Avatar, Button, Input } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send,MessageCircleMore, MessageCircle, X } from "lucide-react";
+import {MessageCircleMore, MessageCircle, X } from "lucide-react";
 import axios from "axios";
+import { IoSend } from 'react-icons/io5';
 import "./styles.css";
 
 const API_URL = "https://the-coding-crusaders-default-rtdb.firebaseio.com/";
@@ -121,7 +122,7 @@ const TenantLandlordUI = () => {
                     className="chat-input"
                   />
                   <Button ml={2} colorScheme="blue" onClick={sendMessage} className="chat-send-btn">
-                    <Send size={18} />
+                    <IoSend size={18} />
                   </Button>
                 </Flex>
               </Box>

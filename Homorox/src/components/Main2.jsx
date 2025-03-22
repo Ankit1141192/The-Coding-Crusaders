@@ -35,6 +35,7 @@ const Main2 = () => {
 
     <h1 style={{fontFamily:"cursive", textDecoration:"none"}}>Tenant & Landlord Details</h1>
     <TenantLandlordUI/>
+    
      
   
     </>

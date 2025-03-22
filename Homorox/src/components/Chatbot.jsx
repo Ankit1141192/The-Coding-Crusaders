@@ -1,67 +1,67 @@
-import React, { useState } from "react";
-import { Box, Input, Button, VStack, Text } from "@chakra-ui/react";
-import axios from "axios";
-import { Send } from "lucide-react";
+import React, { useState } from 'react';
 import "./chatbot.css";
-
-const API_KEY = "AIzaSyCjp7X6_iaLbbPRkxxiRCo1NfgqhDMR8ZY";
-const API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateMessage";
+import { IoSend } from 'react-icons/io5';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { TbMessageChatbot } from 'react-icons/tb';
+import { X } from 'lucide-react';
 
 const Chatbot = () => {
+  const [message, setMessage] = useState("");
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
+  const generateResponse = async (msg) => {
+    if (!msg) return;
     
-    const userMessage = { sender: "You", text: input };
-    setMessages([...messages, userMessage]);
-    setInput("");
-    setLoading(true);
+    const genAI = new GoogleGenerativeAI("AIzaSyBBPUkwj0hkz7lgXKGE5-eDzmXchCWl89c");
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const result = await model.generateContent(msg);
     
-    try {
-      const response = await axios.post(
-        `${API_URL}?key=${API_KEY}`,
-        {
-          contents: [{ role: "user", parts: [{ text: input }] }]
-        }
-      );
-      
-      const botMessage = {
-        sender: "AI",
-        text: response.data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm sorry, I couldn't understand."
-      };
-      setMessages((prevMessages) => [...prevMessages, botMessage]);
-    } catch (error) {
-      console.error("Error fetching AI response:", error);
-      setMessages((prevMessages) => [...prevMessages, { sender: "AI", text: "Error retrieving response. Try again later." }]);
-    } finally {
-      setLoading(false);
-    }
+    const newMessages = [
+      ...messages,
+      { type: "user", text: msg },
+      { type: "bot", text: result.response.text() },
+    ];
+    
+    setMessages(newMessages);
+    setMessage("");
   };
 
   return (
-    <Box className="chatbot-container">
-      <VStack className="chat-messages" spacing={3}>
-        {messages.map((msg, index) => (
-          <Text key={index} className={`chat-message ${msg.sender === "You" ? "user-message" : "bot-message"}`}>
-            <strong>{msg.sender}:</strong> {msg.text}
-          </Text>
-        ))}
-      </VStack>
-      <Box className="chat-input-container">
-        <Input
-          placeholder="Type a message..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="chat-input"
-        />
-        <Button onClick={sendMessage} isLoading={loading} className="chat-send-btn">
-          <Send size={18} />
-        </Button>
-      </Box>
-    </Box>
+    <div className="chat-container">
+      {!isChatOpen ? (
+        <div className="chat-icon" onClick={() => setIsChatOpen(true)}>
+          <TbMessageChatbot size={40} />
+        </div>
+      ) : (
+        <div className="chatbox">
+          <div className="chat-header">
+            <h2>How can assist you?</h2>
+            <button onClick={() => setIsChatOpen(false)} style={{fontSize:"20px",fontWeight:"bold",background:"none",color:"white"}}><X /></button>
+          </div>
+
+          <div className="chat-messages">
+            {messages.map((msg, index) => (
+              <div key={index} className={msg.type === "user" ? "user-message" : "bot-message"}>
+                {msg.text}
+              </div>
+            ))}
+          </div>
+
+          <div className="chat-input">
+            <input 
+              type="text" 
+              value={message} 
+              onChange={(e) => setMessage(e.target.value)} 
+              placeholder="Type a message..." 
+            />
+            <button onClick={() => generateResponse(message)} disabled={!message.trim()}>
+              <IoSend />
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
